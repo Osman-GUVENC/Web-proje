@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>İletişim</title>
+  <script src="js/vue.min.js"></script>
+  <script src="js/validation.js" defer></script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="app" class="container">
+    <h1>İletişim Formu</h1>
+    <form name="iletisimForm" @submit.prevent="kontrolEtJS" action="form-verileri.html" method="GET">
+      <label>Ad: <input type="text" v-model="ad"></label><br>
+      <label>Soyad: <input type="text" v-model="soyad"></label><br>
+      <label>Email: <input type="email" v-model="email"></label><br>
+      <label>Telefon: <input type="text" v-model="telefon"></label><br>
+      <label>Mesaj: <textarea v-model="mesaj"></textarea></label><br>
+
+      <p style="color:red">{{ hataMesaji }}</p>
+
+      <button type="submit">Gönder (JS Kontrol)</button>
+      <button type="button" @click="kontrolEtVue">Vue.js ile Kontrol</button>
+      <button type="reset">Temizle</button>
+    </form>
+  </div>
+</body>
+</html>
