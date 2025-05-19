@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Form Verileri</title>
+  <script>
+    window.onload = function () {
+      const params = new URLSearchParams(window.location.search);
+      document.getElementById("ad").textContent = params.get("ad") || "-";
+      document.getElementById("soyad").textContent = params.get("soyad") || "-";
+      document.getElementById("email").textContent = params.get("email") || "-";
+      document.getElementById("telefon").textContent = params.get("telefon") || "-";
+      document.getElementById("mesaj").textContent = params.get("mesaj") || "-";
+    };
+  </script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Gönderilen Form Bilgileri</h1>
+    <ul>
+      <li><strong>Ad:</strong> <span id="ad"></span></li>
+      <li><strong>Soyad:</strong> <span id="soyad"></span></li>
+      <li><strong>Email:</strong> <span id="email"></span></li>
+      <li><strong>Telefon:</strong> <span id="telefon"></span></li>
+      <li><strong>Mesaj:</strong> <span id="mesaj"></span></li>
+    </ul>
+  </div>
+</body>
+</html>
