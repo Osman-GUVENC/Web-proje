@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Giriş</title>
+  <script>
+    function kontrolEt() {
+      const email = document.forms["girisForm"]["email"].value;
+      const sifre = document.forms["girisForm"]["sifre"].value;
+
+      if (email === "" || sifre === "") {
+        alert("Kullanıcı adı ve şifre boş bırakılamaz.");
+        return false;
+      }
+      if (!email.includes("@")) {
+        alert("Geçerli bir e-posta girin.");
+        return false;
+      }
+      return true;
+    }
+  </script>
+</head>
+<body>
+  <h1>Giriş Yap</h1>
+  <form name="girisForm" action="login.php" method="POST" onsubmit="return kontrolEt();">
+    <label>Kullanıcı Adı (E-posta):</label>
+    <input type="text" name="email"><br><br>
+    <label>Şifre:</label>
+    <input type="password" name="sifre"><br><br>
+    <input type="submit" value="Giriş">
+  </form>
+</body>
+</html>
