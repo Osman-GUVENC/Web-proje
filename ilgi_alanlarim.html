@@ -13,3 +13,13 @@
     }
   </style>
 </head>
+<body>
+  <div id="app" class="container">
+    <h1>Favori Filmlerim</h1>
+    <div v-if="filmler.length === 0">Filmler yükleniyor...</div>
+    <div v-for="film in filmler" class="film">
+      <h3>{{ film.title }}</h3>
+      <p>{{ film.overview }}</p>
+      <img :src="'https://image.tmdb.org/t/p/w200' + film.poster_path" v-if="film.poster_path">
+    </div>
+  </div>
