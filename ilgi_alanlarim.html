@@ -23,3 +23,22 @@
       <img :src="'https://image.tmdb.org/t/p/w200' + film.poster_path" v-if="film.poster_path">
     </div>
   </div>
+
+    <script>
+    new Vue({
+      el: '#app',
+      data: {
+        filmler: []
+      },
+      created() {
+        fetch('https://api.themoviedb.org/3/movie/popular?api_key=<<TMDB_API_KEY>>&language=tr-TR&page=1')
+          .then(res => res.json())
+          .then(data => {
+            this.filmler = data.results;
+          })
+          .catch(err => console.error("Hata:", err));
+      }
+    });
+  </script>
+</body>
+</html>
