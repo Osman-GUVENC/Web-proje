@@ -11,11 +11,26 @@
   <div id="app" class="container">
     <h1>İletişim Formu</h1>
     <form name="iletisimForm" @submit.prevent="kontrolEtJS" action="form-verileri.html" method="GET">
-      <label>Ad: <input type="text" v-model="ad"></label><br>
-      <label>Soyad: <input type="text" v-model="soyad"></label><br>
-      <label>Email: <input type="email" v-model="email"></label><br>
-      <label>Telefon: <input type="text" v-model="telefon"></label><br>
-      <label>Mesaj: <textarea v-model="mesaj"></textarea></label><br>
+      <div>
+        <label for="ad">Ad:</label>
+        <input type="text" id="ad" name="ad" v-model="ad">
+      </div>
+      <div>
+        <label for="soyad">Soyad:</label>
+        <input type="text" id="soyad" name="soyad" v-model="soyad">
+      </div>
+      <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" v-model="email">
+      </div>
+      <div>
+        <label for="telefon">Telefon:</label>
+        <input type="text" id="telefon" name="telefon" v-model="telefon">
+      </div>
+      <div>
+        <label for="mesaj">Mesaj:</label>
+        <textarea id="mesaj" name="mesaj" v-model="mesaj"></textarea>
+      </div>
 
       <p style="color:red">{{ hataMesaji }}</p>
 
