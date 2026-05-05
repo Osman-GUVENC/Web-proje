@@ -8,8 +8,8 @@
   <style>
     .film {
       border: 1px solid #ccc;
-      padding: 10px;
-      margin: 10px 0;
+      padding: 8px;
+      margin: 8px 0;
     }
   </style>
 </head>
@@ -36,7 +36,7 @@
           .then(data => {
             this.filmler = data.results;
           })
-          .catch(err => console.error("Hata:", err));
+          .catch(err => console.error("Error:", err));
       }
     });
   </script>
