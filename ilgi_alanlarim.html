@@ -2,43 +2,151 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
-  <title>İlgi Alanlarım</title>
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="İlgi alanlarım – En popüler filmler TMDB API ile listeleniyor.">
+  <title>İlgi Alanlarım – Filmler | Osman Güvenç</title>
   <link rel="stylesheet" href="css/style.css">
   <style>
-    .film {
-      border: 1px solid #ccc;
-      padding: 8px;
-      margin: 8px 0;
+    .loading-spinner {
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; padding: 80px; color: var(--gray-500);
+    }
+    .spinner {
+      width: 48px; height: 48px; border: 4px solid var(--gray-200);
+      border-top-color: var(--red); border-radius: 50%;
+      animation: spin .8s linear infinite; margin-bottom: 16px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .error-msg { text-align: center; padding: 40px; }
+    .error-msg p { color: var(--gray-500); margin-bottom: 16px; }
+    /* Fallback film cards when API fails */
+    .fallback-note {
+      background: var(--red-soft); border-left: 4px solid var(--red);
+      padding: 12px 18px; border-radius: 0 8px 8px 0;
+      font-size: .88rem; color: var(--red);
+      margin-bottom: 24px; display: none;
     }
   </style>
 </head>
 <body>
-  <div id="app" class="container">
-    <h1>Favori Filmlerim</h1>
-    <div v-if="filmler.length === 0">Filmler yükleniyor...</div>
-    <div v-for="film in filmler" class="film">
-      <h3>{{ film.title }}</h3>
-      <p>{{ film.overview }}</p>
-      <img :src="'https://image.tmdb.org/t/p/w200' + film.poster_path" v-if="film.poster_path">
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-brand">Osman<span>.</span></a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menüyü Aç/Kapat">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Hakkımda</a></li>
+        <li><a href="ozgecmis.html">Özgeçmiş</a></li>
+        <li><a href="sehir.html">Şehrim</a></li>
+        <li><a href="mirasimiz.html">Mirasımız</a></li>
+        <li><a href="takimimiz.html">Takımımız</a></li>
+        <li><a href="ilgi_alanlarim.html" class="active">İlgi Alanlarım</a></li>
+        <li><a href="iletisim.html">İletişim</a></li>
+        <li><a href="login.html">Giriş</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero" style="padding:56px 24px;">
+    <div class="hero-content">
+      <div class="hero-badge">🎬 API Entegrasyonu</div>
+      <h1>İlgi Alanlarım – Filmler</h1>
+      <p>TMDB API üzerinden gerçek zamanlı en popüler filmler</p>
     </div>
   </div>
 
-    <script>
-    new Vue({
-      el: '#app',
-      data: {
-        filmler: []
-      },
-      created() {
-        fetch('https://api.themoviedb.org/3/movie/popular?api_key=<<TMDB_API_KEY>>&language=tr-TR&page=1')
-          .then(res => res.json())
-          .then(data => {
-            this.filmler = data.results;
-          })
-          .catch(err => console.error("Error:", err));
-      }
+  <main>
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">En Popüler <span>Filmler</span></h2>
+        <div class="section-divider"></div>
+
+        <div class="fallback-note" id="fallbackNote">
+          ⚠️ API anahtarı geçersiz veya bağlantı sorunu yaşandı. Örnek filmler gösteriliyor.
+        </div>
+
+        <div id="loadingSpinner" class="loading-spinner">
+          <div class="spinner"></div>
+          <p>Filmler yükleniyor...</p>
+        </div>
+
+        <div class="film-grid" id="filmGrid"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 <strong>Osman Güvenç</strong> | Sakarya Üniversitesi – Web Teknolojileri Projesi</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+  <script>
+    document.getElementById('navToggle').addEventListener('click', function() {
+      document.getElementById('navLinks').classList.toggle('open');
     });
+
+    // Fallback film data
+    const fallbackFilms = [
+      { title: 'The Dark Knight', overview: 'Batman, Gotham\'ı Joker\'den kurtarmak için mücadele eder.', poster_path: null, vote_average: 9.0 },
+      { title: 'Inception', overview: 'Bir hırsız, rüyalar içinde gezinerek şirket sırlarını çalar.', poster_path: null, vote_average: 8.8 },
+      { title: 'Interstellar', overview: 'Bir grup astronot, insanlığı kurtarmak için yıldızlararası yolculuğa çıkar.', poster_path: null, vote_average: 8.7 },
+      { title: 'The Godfather', overview: 'Güçlü bir mafya ailesinin iktidar mücadelesi.', poster_path: null, vote_average: 9.2 },
+      { title: 'Schindler\'s List', overview: 'İkinci Dünya Savaşı\'nda binlerce Yahudi\'yi kurtaran Alman işadamının hikayesi.', poster_path: null, vote_average: 9.0 },
+      { title: 'Forrest Gump', overview: 'Basit bir adamın olağanüstü yaşam yolculuğu.', poster_path: null, vote_average: 8.8 },
+      { title: 'The Matrix', overview: 'Bir bilgisayar korsanı, gerçekliğin ne olduğunu keşfeder.', poster_path: null, vote_average: 8.7 },
+      { title: 'Pulp Fiction', overview: 'Los Angeles\'ın suç dünyasından birbiriyle bağlantılı hikayeler.', poster_path: null, vote_average: 8.9 },
+    ];
+
+    const TMDB_KEY = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkZW1vIiwic3ViIjoiZGVtbyJ9.demo'; // placeholder
+    const API_URL = `https://api.themoviedb.org/3/movie/popular?api_key=DEMO_KEY&language=tr-TR&page=1`;
+
+    function renderFilms(films, isFallback) {
+      document.getElementById('loadingSpinner').style.display = 'none';
+      if (isFallback) document.getElementById('fallbackNote').style.display = 'block';
+
+      const grid = document.getElementById('filmGrid');
+      grid.innerHTML = '';
+
+      films.forEach(film => {
+        const imgSrc = film.poster_path
+          ? `https://image.tmdb.org/t/p/w300${film.poster_path}`
+          : `https://via.placeholder.com/300x420/c0392b/ffffff?text=${encodeURIComponent(film.title.substring(0,10))}`;
+
+        const rating = film.vote_average ? Number(film.vote_average).toFixed(1) : '';
+
+        const card = document.createElement('div');
+        card.className = 'film-card';
+        card.innerHTML = `
+          <img src="${imgSrc}" alt="${film.title}" loading="lazy" onerror="this.src='https://via.placeholder.com/300x420/c0392b/ffffff?text=Film'">
+          <div class="film-card-body">
+            <div class="film-card-title">${film.title}</div>
+            ${rating ? `<div class="film-rating">⭐ ${rating}</div>` : ''}
+            <div class="film-card-desc">${film.overview || 'Açıklama bulunmuyor.'}</div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    fetch(`https://api.themoviedb.org/3/movie/popular?api_key=4287ad07e2bab69ff87cba3e7a4b0817&language=tr-TR&page=1`)
+      .then(res => {
+        if (!res.ok) throw new Error('API Hatası');
+        return res.json();
+      })
+      .then(data => {
+        if (data.results && data.results.length > 0) {
+          renderFilms(data.results.slice(0, 12), false);
+        } else {
+          throw new Error('Sonuç yok');
+        }
+      })
+      .catch(() => {
+        renderFilms(fallbackFilms, true);
+      });
   </script>
 </body>
 </html>

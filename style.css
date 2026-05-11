@@ -1,7 +1,3 @@
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f2f2f2;
-}
-h1 {
-  color: darkred;
-}
+/* Tüm stiller css/style.css dosyasına taşındı */
+/* Bu dosya geriye dönük uyumluluk için korunmaktadır */
+@import url('css/style.css');

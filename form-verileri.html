@@ -2,29 +2,99 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
-  <title>Form Verileri</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Form verileri – Gönderilen iletişim formu bilgileri.">
+  <title>Form Verileri | Osman Güvenç</title>
+  <link rel="stylesheet" href="css/style.css">
   <script>
     window.onload = function () {
       const params = new URLSearchParams(window.location.search);
-      document.getElementById("ad").textContent = params.get("ad") || "-";
-      document.getElementById("soyad").textContent = params.get("soyad") || "-";
-      document.getElementById("email").textContent = params.get("email") || "-";
-      document.getElementById("telefon").textContent = params.get("telefon") || "-";
-      document.getElementById("mesaj").textContent = params.get("mesaj") || "-";
+      const fields = ['ad','soyad','email','telefon','konu','cinsiyet','mesaj'];
+      fields.forEach(field => {
+        const el = document.getElementById(field);
+        if (el) el.textContent = params.get(field) || '—';
+      });
+      // Checkbox multi-values
+      const ilgiEl = document.getElementById('ilgi');
+      if (ilgiEl) {
+        const ilgi = params.getAll('ilgi');
+        ilgiEl.textContent = ilgi.length ? ilgi.join(', ') : '—';
+      }
     };
   </script>
-  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Gönderilen Form Bilgisi</h1>
-    <ul>
-      <li><strong>Ad:</strong> <span id="ad"></span></li>
-      <li><strong>Soyad:</strong> <span id="soyad"></span></li>
-      <li><strong>Email:</strong> <span id="email"></span></li>
-      <li><strong>Telefon:</strong> <span id="telefon"></span></li>
-      <li><strong>Mesaj:</strong> <span id="mesaj"></span></li>
-    </ul>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-brand">Osman<span>.</span></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Hakkımda</a></li>
+        <li><a href="iletisim.html">İletişim</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="hero" style="padding:56px 24px;">
+    <div class="hero-content">
+      <div class="hero-badge">✅ Gönderildi</div>
+      <h1>Form Bilgileri</h1>
+      <p>Gönderilen form verileri aşağıda listelenmektedir</p>
+    </div>
   </div>
+
+  <main>
+    <section class="section">
+      <div class="container" style="max-width:640px;">
+        <div class="card" style="padding:40px;">
+          <h2 class="section-title">Gönderilen <span>Bilgiler</span></h2>
+          <div class="section-divider"></div>
+          <ul class="info-list">
+            <li>
+              <div class="info-icon">👤</div>
+              <div><strong>Ad:</strong> <span id="ad"></span></div>
+            </li>
+            <li>
+              <div class="info-icon">👤</div>
+              <div><strong>Soyad:</strong> <span id="soyad"></span></div>
+            </li>
+            <li>
+              <div class="info-icon">📧</div>
+              <div><strong>E-posta:</strong> <span id="email"></span></div>
+            </li>
+            <li>
+              <div class="info-icon">📱</div>
+              <div><strong>Telefon:</strong> <span id="telefon"></span></div>
+            </li>
+            <li>
+              <div class="info-icon">📋</div>
+              <div><strong>Konu:</strong> <span id="konu"></span></div>
+            </li>
+            <li>
+              <div class="info-icon">🧑</div>
+              <div><strong>Cinsiyet:</strong> <span id="cinsiyet"></span></div>
+            </li>
+            <li>
+              <div class="info-icon">🎯</div>
+              <div><strong>İlgi Alanları:</strong> <span id="ilgi"></span></div>
+            </li>
+            <li>
+              <div class="info-icon">💬</div>
+              <div><strong>Mesaj:</strong> <span id="mesaj"></span></div>
+            </li>
+          </ul>
+          <div style="margin-top:32px; text-align:center;">
+            <a href="iletisim.html" class="btn btn-primary">← Forma Geri Dön</a>
+            <a href="index.html" class="btn btn-outline" style="margin-left:12px;">Ana Sayfa</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 <strong>Osman Güvenç</strong> | Sakarya Üniversitesi – Web Teknolojileri Projesi</p>
+  </footer>
 </body>
 </html>

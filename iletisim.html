@@ -2,42 +2,285 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
-  <title>İletişim</title>
-  <script src="js/vue.min.js"></script>
-  <script src="js/validation.js" defer></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="İletişim formu – Osman Güvenç ile iletişime geçin.">
+  <title>İletişim – Osman Güvenç</title>
   <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+  <style>
+    .contact-wrapper {
+      display: grid; grid-template-columns: 1fr 1.6fr; gap: 40px; align-items: start;
+    }
+    @media(max-width:768px){ .contact-wrapper { grid-template-columns: 1fr; } }
+    .contact-info-card {
+      background: linear-gradient(135deg, var(--red-dark), var(--red));
+      color: white; border-radius: var(--radius-lg);
+      padding: 40px 32px;
+    }
+    .contact-info-card h3 { font-size: 1.4rem; margin-bottom: 8px; }
+    .contact-info-card p  { opacity: .85; margin-bottom: 32px; font-size: .95rem; }
+    .contact-item { display: flex; gap: 14px; align-items: center; margin-bottom: 20px; }
+    .contact-item-icon {
+      width: 42px; height: 42px; border-radius: 10px;
+      background: rgba(255,255,255,.2); display: flex;
+      align-items: center; justify-content: center; font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .contact-item-text { font-size: .9rem; }
+    .contact-item-label { opacity: .7; font-size: .8rem; }
+  </style>
 </head>
 <body>
-  <div id="app" class="container">
-    <h1>İletişim Formu</h1>
-    <form name="iletisimForm" @submit.prevent="kontrolEtJS" action="form-verileri.html" method="GET">
-      <div>
-        <label for="ad">Ad:</label>
-        <input type="text" id="ad" name="ad" v-model="ad">
-      </div>
-      <div>
-        <label for="soyad">Soyad:</label>
-        <input type="text" id="soyad" name="soyad" v-model="soyad">
-      </div>
-      <div>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" v-model="email">
-      </div>
-      <div>
-        <label for="telefon">Telefon:</label>
-        <input type="text" id="telefon" name="telefon" v-model="telefon">
-      </div>
-      <div>
-        <label for="mesaj">Mesaj:</label>
-        <textarea id="mesaj" name="mesaj" v-model="mesaj"></textarea>
-      </div>
 
-      <p style="color:red">{{ hataMesaji }}</p>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-brand">Osman<span>.</span></a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menüyü Aç/Kapat">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Hakkımda</a></li>
+        <li><a href="ozgecmis.html">Özgeçmiş</a></li>
+        <li><a href="sehir.html">Şehrim</a></li>
+        <li><a href="mirasimiz.html">Mirasımız</a></li>
+        <li><a href="takimimiz.html">Takımımız</a></li>
+        <li><a href="ilgi_alanlarim.html">İlgi Alanlarım</a></li>
+        <li><a href="iletisim.html" class="active">İletişim</a></li>
+        <li><a href="login.html">Giriş</a></li>
+      </ul>
+    </div>
+  </nav>
 
-      <button type="submit">Gönder (JS Kontrol)</button>
-      <button type="button" @click="kontrolEtVue">Vue.js ile Kontrol</button>
-      <button type="reset">Temizle</button>
-    </form>
+  <!-- HERO -->
+  <div class="hero" style="padding:56px 24px;">
+    <div class="hero-content">
+      <div class="hero-badge">📬 İletişim</div>
+      <h1>Bana Ulaşın</h1>
+      <p>Formu doldurun, en kısa sürede geri döneyim</p>
+    </div>
   </div>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="contact-wrapper" id="app">
+
+          <!-- SOL: BİLGİ KARTI -->
+          <div class="contact-info-card">
+            <h3>İletişim Bilgileri</h3>
+            <p>Aşağıdaki bilgilerden veya formu doldurarak benimle iletişime geçebilirsiniz.</p>
+            <div class="contact-item">
+              <div class="contact-item-icon">📧</div>
+              <div>
+                <div class="contact-item-label">E-posta</div>
+                <div class="contact-item-text">oguvencs@sakarya.edu.tr</div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon">📍</div>
+              <div>
+                <div class="contact-item-label">Konum</div>
+                <div class="contact-item-text">Sakarya / Adapazarı, Türkiye</div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon">🎓</div>
+              <div>
+                <div class="contact-item-label">Üniversite</div>
+                <div class="contact-item-text">Sakarya Üniversitesi<br>Bilgisayar Mühendisliği</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SAĞ: FORM -->
+          <div class="card" style="padding:40px;">
+            <h2 style="font-size:1.4rem; font-weight:700; margin-bottom:24px;">Mesaj Gönder</h2>
+
+            <!-- HATA / BAŞARI MESAJI -->
+            <div id="alertBox" style="display:none;" class="alert"></div>
+
+            <form name="iletisimForm" action="form-verileri.html" method="GET" id="iletisimForm" novalidate>
+
+              <!-- AD SOYAD -->
+              <div class="grid-2" style="gap:16px;">
+                <div class="form-group">
+                  <label class="form-label" for="ad">Ad *</label>
+                  <input type="text" id="ad" name="ad" class="form-control" v-model="ad" placeholder="Adınız">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="soyad">Soyad *</label>
+                  <input type="text" id="soyad" name="soyad" class="form-control" v-model="soyad" placeholder="Soyadınız">
+                </div>
+              </div>
+
+              <!-- E-POSTA -->
+              <div class="form-group">
+                <label class="form-label" for="email">E-posta *</label>
+                <input type="email" id="email" name="email" class="form-control" v-model="email" placeholder="ornek@mail.com">
+              </div>
+
+              <!-- TELEFON -->
+              <div class="form-group">
+                <label class="form-label" for="telefon">Telefon *</label>
+                <input type="tel" id="telefon" name="telefon" class="form-control" v-model="telefon" placeholder="05XX XXX XX XX">
+              </div>
+
+              <!-- KONU (SELECT) -->
+              <div class="form-group">
+                <label class="form-label" for="konu">Konu *</label>
+                <select id="konu" name="konu" class="form-control" v-model="konu">
+                  <option value="">Konu Seçin</option>
+                  <option value="genel">Genel Bilgi</option>
+                  <option value="proje">Proje İş Birliği</option>
+                  <option value="staj">Staj Fırsatı</option>
+                  <option value="diger">Diğer</option>
+                </select>
+              </div>
+
+              <!-- CİNSİYET (RADIO) -->
+              <div class="form-group">
+                <label class="form-label">Cinsiyet</label>
+                <div style="display:flex; gap:24px; margin-top:8px;">
+                  <label style="display:flex; align-items:center; gap:8px; cursor:pointer;">
+                    <input type="radio" name="cinsiyet" value="erkek" v-model="cinsiyet"> Erkek
+                  </label>
+                  <label style="display:flex; align-items:center; gap:8px; cursor:pointer;">
+                    <input type="radio" name="cinsiyet" value="kadin" v-model="cinsiyet"> Kadın
+                  </label>
+                  <label style="display:flex; align-items:center; gap:8px; cursor:pointer;">
+                    <input type="radio" name="cinsiyet" value="belirtmek_istemiyorum" v-model="cinsiyet"> Belirtmek İstemiyorum
+                  </label>
+                </div>
+              </div>
+
+              <!-- İLGİ ALANLARI (CHECKBOX) -->
+              <div class="form-group">
+                <label class="form-label">İlgi Alanları</label>
+                <div style="display:flex; flex-wrap:wrap; gap:12px; margin-top:8px;">
+                  <label style="display:flex; align-items:center; gap:8px; cursor:pointer;">
+                    <input type="checkbox" name="ilgi" value="web" v-model="ilgiAlanlari"> Web Geliştirme
+                  </label>
+                  <label style="display:flex; align-items:center; gap:8px; cursor:pointer;">
+                    <input type="checkbox" name="ilgi" value="mobil" v-model="ilgiAlanlari"> Mobil Uygulama
+                  </label>
+                  <label style="display:flex; align-items:center; gap:8px; cursor:pointer;">
+                    <input type="checkbox" name="ilgi" value="yapay_zeka" v-model="ilgiAlanlari"> Yapay Zeka
+                  </label>
+                </div>
+              </div>
+
+              <!-- MESAJ -->
+              <div class="form-group">
+                <label class="form-label" for="mesaj">Mesaj *</label>
+                <textarea id="mesaj" name="mesaj" class="form-control" v-model="mesaj" placeholder="Mesajınızı buraya yazın..."></textarea>
+              </div>
+
+              <!-- HATA MESAJI (Vue) -->
+              <p style="color:var(--red); font-size:.88rem; margin-bottom:16px; min-height:20px;">{{ hataMesaji }}</p>
+
+              <!-- BUTONLAR -->
+              <div class="btn-group">
+                <button type="button" id="jsKontrolBtn" class="btn btn-outline" onclick="jsKontrol()">
+                  ✅ JS ile Doğrula & Gönder
+                </button>
+                <button type="button" class="btn btn-primary" @click="kontrolEtVue">
+                  🔷 Vue.js ile Doğrula
+                </button>
+                <button type="reset" class="btn" style="background:var(--gray-100); color:var(--dark);" @click="formuTemizle">
+                  🗑️ Temizle
+                </button>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 <strong>Osman Güvenç</strong> | Sakarya Üniversitesi – Web Teknolojileri Projesi</p>
+  </footer>
+
+  <script>
+    // ── Native JavaScript Validation ──────────────────────────────────
+    function jsKontrol() {
+      const form = document.forms['iletisimForm'];
+      const ad      = form['ad'].value.trim();
+      const soyad   = form['soyad'].value.trim();
+      const email   = form['email'].value.trim();
+      const telefon = form['telefon'].value.trim();
+      const konu    = form['konu'].value;
+      const mesaj   = form['mesaj'].value.trim();
+
+      const alertBox = document.getElementById('alertBox');
+
+      function showAlert(msg, type) {
+        alertBox.textContent = msg;
+        alertBox.className = 'alert alert-' + type;
+        alertBox.style.display = 'block';
+        alertBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+
+      if (!ad || !soyad || !email || !telefon || !konu || !mesaj) {
+        showAlert('⚠️ Lütfen zorunlu (*) tüm alanları doldurun.', 'danger');
+        return;
+      }
+      if (!email.includes('@') || !email.includes('.')) {
+        showAlert('⚠️ Geçerli bir e-posta adresi girin.', 'danger');
+        return;
+      }
+      if (!/^[0-9\s\+\-\(\)]{7,15}$/.test(telefon)) {
+        showAlert('⚠️ Telefon numarası yalnızca rakam, +, - ve boşluktan oluşabilir.', 'danger');
+        return;
+      }
+      showAlert('✅ Native JS doğrulama başarılı! Form gönderiliyor...', 'success');
+      setTimeout(() => form.submit(), 800);
+    }
+
+    // ── Navbar Toggle ─────────────────────────────────────────────────
+    document.getElementById('navToggle').addEventListener('click', function() {
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+  </script>
+
+  <script>
+    // ── Vue.js Validation ─────────────────────────────────────────────
+    new Vue({
+      el: '#app',
+      data: {
+        ad: '', soyad: '', email: '', telefon: '',
+        konu: '', cinsiyet: '', ilgiAlanlari: [], mesaj: '',
+        hataMesaji: ''
+      },
+      methods: {
+        kontrolEtVue() {
+          this.hataMesaji = '';
+          if (!this.ad.trim() || !this.soyad.trim() || !this.email.trim() || !this.telefon.trim() || !this.konu || !this.mesaj.trim()) {
+            this.hataMesaji = '⚠️ Lütfen zorunlu (*) tüm alanları doldurun.';
+            return;
+          }
+          if (!this.email.includes('@') || !this.email.includes('.')) {
+            this.hataMesaji = '⚠️ Geçerli bir e-posta adresi girin.';
+            return;
+          }
+          if (!/^[0-9\s\+\-\(\)]{7,15}$/.test(this.telefon)) {
+            this.hataMesaji = '⚠️ Telefon numarası sadece rakam içermelidir.';
+            return;
+          }
+          this.hataMesaji = '';
+          alert('✅ Vue.js doğrulama başarılı!\n\nAd: ' + this.ad + '\nE-posta: ' + this.email);
+          document.forms['iletisimForm'].submit();
+        },
+        formuTemizle() {
+          this.ad = ''; this.soyad = ''; this.email = ''; this.telefon = '';
+          this.konu = ''; this.cinsiyet = ''; this.ilgiAlanlari = []; this.mesaj = '';
+          this.hataMesaji = '';
+          document.getElementById('alertBox').style.display = 'none';
+        }
+      }
+    });
+  </script>
 </body>
 </html>

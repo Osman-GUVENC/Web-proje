@@ -2,16 +2,172 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
-  <title>Takımımız - Hatayspor</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Hatayspor – 1967 kuruluşlu Hatay'ın köklü futbol kulübü.">
+  <title>Takımımız – Hatayspor | Osman Güvenç</title>
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    .team-hero {
+      background: linear-gradient(135deg, #8B0000 0%, #c0392b 50%, #e74c3c 100%);
+      padding: 80px 24px;
+      text-align: center;
+      color: white;
+    }
+    .team-logo-placeholder {
+      width: 140px; height: 140px;
+      background: rgba(255,255,255,.15);
+      border: 4px solid rgba(255,255,255,.4);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3.5rem;
+      margin: 0 auto 24px;
+    }
+    .stat-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
+    .stat-box {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 24px 16px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      border-top: 3px solid var(--red);
+    }
+    .stat-box .num { font-size: 2rem; font-weight: 800; color: var(--red); }
+    .stat-box .lbl { font-size: .82rem; color: var(--gray-500); margin-top: 4px; }
+    @media(max-width:768px){ .stat-grid { grid-template-columns: repeat(2,1fr); } }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Hatayspor</h1>
-    <img src="images/hatayspor.png" alt="Hatayspor Logosu" width="200">
-    <p>Hatayspor, 1967 yılında Hatay'da kurulmuştur ve bordo-beyaz renklere sahiptir.</p>
-    <p>Spor Toto 1.lig'de mücadele eden takımımız, son yıllarda gösterdiği başarılarla dikkat çekmektedir.</p>
-    <p>Stadı: Yeni Hatay Stadyumu | Kapasite: 27.000</p>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-brand">Osman<span>.</span></a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menüyü Aç/Kapat">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Hakkımda</a></li>
+        <li><a href="ozgecmis.html">Özgeçmiş</a></li>
+        <li><a href="sehir.html">Şehrim</a></li>
+        <li><a href="mirasimiz.html">Mirasımız</a></li>
+        <li><a href="takimimiz.html" class="active">Takımımız</a></li>
+        <li><a href="ilgi_alanlarim.html">İlgi Alanlarım</a></li>
+        <li><a href="iletisim.html">İletişim</a></li>
+        <li><a href="login.html">Giriş</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero" style="padding:70px 24px;">
+    <div class="hero-content">
+      <div class="team-logo-placeholder">⚽</div>
+      <div class="hero-badge">⚽ Futbol Kulübü</div>
+      <h1>Hatayspor</h1>
+      <p>1967'den Bu Yana Hatay'ın Gururu – Bordo & Beyaz</p>
+    </div>
   </div>
+
+  <main>
+    <section class="section">
+      <div class="container">
+
+        <!-- İSTATİSTİKLER -->
+        <div class="stat-grid" style="margin-bottom:56px;">
+          <div class="stat-box">
+            <div class="num">1967</div>
+            <div class="lbl">Kuruluş Yılı</div>
+          </div>
+          <div class="stat-box">
+            <div class="num">27.000</div>
+            <div class="lbl">Stadyum Kapasitesi</div>
+          </div>
+          <div class="stat-box">
+            <div class="num">1. Lig</div>
+            <div class="lbl">Spor Toto 1. Lig</div>
+          </div>
+          <div class="stat-box">
+            <div class="num">Bordo & Beyaz</div>
+            <div class="lbl">Forma Rengi</div>
+          </div>
+        </div>
+
+        <!-- KULÜPHAKKİNDA + STADYUM GÖRSELİ -->
+        <div class="grid-2" style="gap:40px; align-items:start;">
+          <div>
+            <h2 class="section-title">Kulüp <span>Hakkında</span></h2>
+            <div class="section-divider"></div>
+            <p style="margin-bottom:16px;">
+              <strong>Hatayspor</strong>, 1967 yılında Türkiye'nin Hatay iline bağlı Antakya'da kurulmuştur. Bordo ve beyaz renklerle özdeşleşen kulüp, son yıllarda Türk futbolunda yükselişe geçerek dikkat çekici bir performans sergilemiştir.
+            </p>
+            <p style="margin-bottom:16px;">
+              Kulüp, güneydoğu Türkiye'de futbol kültürünün yaygınlaşmasına büyük katkı sağlamış; yerel yetenekleri Türk futboluna kazandırmıştır.
+            </p>
+            <p style="margin-bottom:24px;">
+              Hatay depremi sonrası zorlu dönemlerden geçen kulüp, tüm olumsuzluklara rağmen mücadelesini sürdürmeye devam etmektedir.
+            </p>
+            <ul class="info-list">
+              <li>
+                <div class="info-icon">🏟️</div>
+                <div><strong>Stadyum:</strong> Yeni Hatay Stadyumu, Antakya</div>
+              </li>
+              <li>
+                <div class="info-icon">👕</div>
+                <div><strong>Forma Rengi:</strong> Bordo ve Beyaz</div>
+              </li>
+              <li>
+                <div class="info-icon">🏆</div>
+                <div><strong>Lig:</strong> Spor Toto 1. Lig</div>
+              </li>
+              <li>
+                <div class="info-icon">📍</div>
+                <div><strong>Şehir:</strong> Antakya / Hatay, Türkiye</div>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <div class="card" style="overflow:hidden;">
+              <img
+                class="card-img"
+                style="height:280px;"
+                src="images/muzesi.jpg"
+                alt="Antakya – Hatayspor'un şehri"
+              >
+              <div class="card-body">
+                <h3 class="card-title">Hatay – Futbolun Şehri</h3>
+                <p class="card-text">Hatayspor, farklı kültürlerin bir arada yaşadığı bu kadim şehrin futboldaki temsilcisidir.</p>
+              </div>
+            </div>
+
+            <div class="card" style="margin-top:20px; padding:24px; background:var(--red-soft); border:1px solid #f5c6cb;">
+              <h3 style="color:var(--red); margin-bottom:12px;">⚽ Takımın Özellikleri</h3>
+              <div style="display:flex; flex-wrap:wrap; gap:8px;">
+                <span class="tag">Genç Takım</span>
+                <span class="tag">Yerli Oyuncular</span>
+                <span class="tag">Saldırgan Oyun</span>
+                <span class="tag">Güçlü Taraftar</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align:center; margin-top:40px;">
+          <a href="sehir.html" class="btn btn-outline">← Şehrim Sayfasına Dön</a>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 <strong>Osman Güvenç</strong> | Sakarya Üniversitesi – Web Teknolojileri Projesi</p>
+  </footer>
+
+  <script>
+    document.getElementById('navToggle').addEventListener('click', function() {
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+  </script>
 </body>
 </html>

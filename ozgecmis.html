@@ -2,19 +2,160 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
-  <title>Özgeçmiş</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Osman Güvenç özgeçmiş sayfası – eğitim, beceriler ve deneyimler.">
+  <title>Özgeçmiş – Osman Güvenç</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <section>
-    <h1>Özgeçmiş</h1>
-    <article>
-      <h2>Eğitim</h2>
-      <ul>
-        <li><strong>Lise:</strong> Hatay Osman Ötken Anadolu Lisesi</li>
-        <li><strong>Üniversite:</strong> Sakarya Üniversitesi - Bilgisayar Mühendisliği(2.Sınıf)</li>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-brand">Osman<span>.</span></a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menüyü Aç/Kapat">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Hakkımda</a></li>
+        <li><a href="ozgecmis.html" class="active">Özgeçmiş</a></li>
+        <li><a href="sehir.html">Şehrim</a></li>
+        <li><a href="mirasimiz.html">Mirasımız</a></li>
+        <li><a href="takimimiz.html">Takımımız</a></li>
+        <li><a href="ilgi_alanlarim.html">İlgi Alanlarım</a></li>
+        <li><a href="iletisim.html">İletişim</a></li>
+        <li><a href="login.html">Giriş</a></li>
       </ul>
-    </article>
-  </section>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero" style="padding:56px 24px;">
+    <div class="hero-content">
+      <div class="hero-badge">📄 CV</div>
+      <h1>Özgeçmiş</h1>
+      <p>Eğitim hayatım, becerilerim ve hedeflerim</p>
+    </div>
+  </div>
+
+  <main>
+    <section class="section">
+      <div class="container">
+
+        <div class="grid-2">
+          <!-- EĞİTİM -->
+          <section>
+            <header>
+              <h2 class="section-title">Eğitim <span>Bilgisi</span></h2>
+              <div class="section-divider"></div>
+            </header>
+            <article class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-year">2024 – Devam Ediyor</div>
+                <div class="timeline-title">Bilgisayar Mühendisliği</div>
+                <div class="timeline-desc">Sakarya Üniversitesi, Mühendislik Fakültesi – 2. Sınıf</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-year">2020 – 2024</div>
+                <div class="timeline-title">Hatay Osman Ötken Anadolu Lisesi</div>
+                <div class="timeline-desc">Anadolu Lisesi programından mezun oldum.</div>
+              </div>
+            </article>
+          </section>
+
+          <!-- BECERİLER -->
+          <section>
+            <h2 class="section-title">Teknik <span>Beceriler</span></h2>
+            <div class="section-divider"></div>
+            <article>
+              <div style="margin-bottom:20px;">
+                <div style="display:flex; justify-content:space-between; margin-bottom:6px; font-size:.9rem; font-weight:600;">
+                  <span>HTML5 / CSS3</span><span style="color:var(--red);">85%</span>
+                </div>
+                <div style="background:var(--gray-200); border-radius:50px; height:8px;">
+                  <div style="width:85%; background:var(--red); border-radius:50px; height:8px;"></div>
+                </div>
+              </div>
+              <div style="margin-bottom:20px;">
+                <div style="display:flex; justify-content:space-between; margin-bottom:6px; font-size:.9rem; font-weight:600;">
+                  <span>JavaScript</span><span style="color:var(--red);">70%</span>
+                </div>
+                <div style="background:var(--gray-200); border-radius:50px; height:8px;">
+                  <div style="width:70%; background:var(--red); border-radius:50px; height:8px;"></div>
+                </div>
+              </div>
+              <div style="margin-bottom:20px;">
+                <div style="display:flex; justify-content:space-between; margin-bottom:6px; font-size:.9rem; font-weight:600;">
+                  <span>PHP</span><span style="color:var(--red);">55%</span>
+                </div>
+                <div style="background:var(--gray-200); border-radius:50px; height:8px;">
+                  <div style="width:55%; background:var(--red); border-radius:50px; height:8px;"></div>
+                </div>
+              </div>
+              <div>
+                <div style="display:flex; justify-content:space-between; margin-bottom:6px; font-size:.9rem; font-weight:600;">
+                  <span>Python</span><span style="color:var(--red);">65%</span>
+                </div>
+                <div style="background:var(--gray-200); border-radius:50px; height:8px;">
+                  <div style="width:65%; background:var(--red); border-radius:50px; height:8px;"></div>
+                </div>
+              </div>
+            </article>
+          </section>
+        </div>
+
+        <!-- İLGİ ALANLARI -->
+        <section style="margin-top:56px;">
+          <h2 class="section-title">İlgi <span>Alanları</span></h2>
+          <div class="section-divider"></div>
+          <article>
+            <div style="display:flex; flex-wrap:wrap; gap:12px;">
+              <span class="tag" style="font-size:.95rem; padding:8px 20px;">⚽ Futbol</span>
+              <span class="tag" style="font-size:.95rem; padding:8px 20px;">🎣 Balıkçılık</span>
+              <span class="tag" style="font-size:.95rem; padding:8px 20px;">✈️ Seyahat</span>
+              <span class="tag" style="font-size:.95rem; padding:8px 20px;">📚 Okuma</span>
+              <span class="tag" style="font-size:.95rem; padding:8px 20px;">♟️ Satranç</span>
+              <span class="tag" style="font-size:.95rem; padding:8px 20px;">🏀 Basketbol</span>
+              <span class="tag" style="font-size:.95rem; padding:8px 20px;">🏊 Yüzme</span>
+              <span class="tag" style="font-size:.95rem; padding:8px 20px;">🧗 Tırmanma</span>
+            </div>
+          </article>
+        </section>
+
+        <!-- DERSLER -->
+        <section style="margin-top:56px;">
+          <h2 class="section-title">Alınan <span>Dersler</span></h2>
+          <div class="section-divider"></div>
+          <article>
+            <div class="grid-3">
+              <div class="card" style="padding:20px;">
+                <h3 class="card-title">📐 Matematik</h3>
+                <p class="card-text">Calculus I-II, Lineer Cebir, Ayrık Matematik</p>
+              </div>
+              <div class="card" style="padding:20px;">
+                <h3 class="card-title">💻 Programlama</h3>
+                <p class="card-text">C, Python, Algoritma ve Veri Yapıları</p>
+              </div>
+              <div class="card" style="padding:20px;">
+                <h3 class="card-title">🌐 Web</h3>
+                <p class="card-text">Web Teknolojileri, HTML5, CSS3, JavaScript, PHP</p>
+              </div>
+            </div>
+          </article>
+        </section>
+
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 <strong>Osman Güvenç</strong> | Sakarya Üniversitesi – Web Teknolojileri Projesi</p>
+  </footer>
+
+  <script>
+    document.getElementById('navToggle').addEventListener('click', function() {
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+  </script>
 </body>
 </html>

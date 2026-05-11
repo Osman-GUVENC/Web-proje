@@ -2,32 +2,108 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
-  <title>Giriş</title>
-  <script>
-    function kontrolEt() {
-      const email = document.forms["girisForm"]["email"].value;
-      const sifre = document.forms["girisForm"]["sifre"].value;
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Güvenli giriş sayfası – Öğrenci no ile kimlik doğrulama.">
+  <title>Giriş Yap | Osman Güvenç</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .login-page {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #96281b 0%, #c0392b 50%, #e74c3c 100%);
+      display: flex; align-items: center; justify-content: center; padding: 24px;
+    }
+    .login-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 48px 40px;
+      width: 100%; max-width: 440px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.3);
+    }
+    .login-logo {
+      width: 72px; height: 72px; border-radius: 18px;
+      background: linear-gradient(135deg, var(--red), var(--red-dark));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; margin: 0 auto 24px;
+    }
+    .login-title { text-align: center; font-size: 1.6rem; font-weight: 800; margin-bottom: 6px; }
+    .login-sub   { text-align: center; color: var(--gray-500); font-size: .9rem; margin-bottom: 32px; }
+    .hint-box {
+      background: var(--red-soft); border: 1px solid #f5c6cb;
+      border-radius: 8px; padding: 14px 16px;
+      font-size: .82rem; color: #7b1a1a; margin-bottom: 24px; line-height: 1.6;
+    }
+    @media(max-width:480px){ .login-card { padding: 32px 24px; } }
+  </style>
+</head>
+<body>
 
-      if (email === "" || sifre === "") {
-        alert("Kullanıcı adı ve şifre boş bırakılamaz.");
+  <div class="login-page">
+    <div class="login-card">
+
+      <div class="login-logo">🔐</div>
+      <h1 class="login-title">Giriş Yap</h1>
+      <p class="login-sub">Öğrenci bilgilerinizle giriş yapın</p>
+
+      <div class="hint-box">
+        <strong>Test Bilgileri:</strong><br>
+        📧 E-posta: <code>b2412100001@sakarya.edu.tr</code><br>
+        🔑 Şifre: <code>b2412100001</code>
+      </div>
+
+      <div id="errorBox" style="display:none;" class="alert alert-danger"></div>
+
+      <form name="girisForm" action="login.php" method="POST" onsubmit="return jsGirisKontrol();" id="loginForm">
+
+        <div class="form-group">
+          <label class="form-label" for="loginEmail">E-posta (Öğrenci No)</label>
+          <input type="text" id="loginEmail" name="email" class="form-control" placeholder="b2412100001@sakarya.edu.tr">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="loginSifre">Şifre (Öğrenci No)</label>
+          <input type="password" id="loginSifre" name="sifre" class="form-control" placeholder="b2412100001">
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; margin-top:8px;">
+          🔓 Giriş Yap
+        </button>
+
+      </form>
+
+      <p style="text-align:center; margin-top:24px; font-size:.88rem; color:var(--gray-500);">
+        <a href="index.html">← Ana Sayfaya Dön</a>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    function jsGirisKontrol() {
+      const email = document.forms['girisForm']['email'].value.trim();
+      const sifre = document.forms['girisForm']['sifre'].value.trim();
+      const errorBox = document.getElementById('errorBox');
+
+      function showError(msg) {
+        errorBox.textContent = msg;
+        errorBox.style.display = 'block';
+      }
+      errorBox.style.display = 'none';
+
+      if (email === '' || sifre === '') {
+        showError('⚠️ Kullanıcı adı ve şifre boş bırakılamaz.');
         return false;
       }
-      if (!email.includes("@")) {
-        alert("Geçerli bir e-posta girin.");
+      if (!email.includes('@') || !email.includes('.')) {
+        showError('⚠️ Geçerli bir e-posta adresi girin. (örn: b2412100001@sakarya.edu.tr)');
+        return false;
+      }
+      // Format: b + 10 rakam @sakarya.edu.tr
+      const emailPattern = /^b\d{10}@sakarya\.edu\.tr$/;
+      if (!emailPattern.test(email)) {
+        showError('⚠️ E-posta formatı hatalı. Öğrenci e-postası kullanın. (örn: b2412100001@sakarya.edu.tr)');
         return false;
       }
       return true;
     }
   </script>
-</head>
-<body>
-  <h1>Giriş Yap</h1>
-  <form name="girisForm" action="login.php" method="POST" onsubmit="return kontrolEt();">
-    <label>Kullanıcı Adı (E-posta):</label>
-    <input type="text" name="email"><br><br>
-    <label>Şifre:</label>
-    <input type="password" name="sifre"><br><br>
-    <input type="submit" value="Giriş">
-  </form>
 </body>
 </html>

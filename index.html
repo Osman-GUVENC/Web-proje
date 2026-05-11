@@ -2,19 +2,139 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
-  <title>Hakkımda</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Osman Güvenç – Sakarya Üniversitesi Bilgisayar Mühendisliği öğrencisi kişisel tanıtım sayfası.">
+  <title>Osman Güvenç – Hakkımda</title>
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 <body>
-  <div class="container mt-5">
-    <h1>Merhabalar, ben Osman!</h1>
-    <p>Hobilerim: Futbol oynamak-izlemek,balığa gitmek,gezmek,okumak,satranç oynamak,basketbol oynamak...</p>
-    <p>Sevdiğim Sporlar: Futbol, Yüzme, Yürüyüş, Tırmanma, Balıkçılık</p>
-    <div class="row">
-      <img src="images/slider1.jpg" class="col-md-3 img-thumbnail">
-      <img src="images/slider2.jpg" class="col-md-3 img-thumbnail">
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-brand">Osman<span>.</span></a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menüyü Aç/Kapat">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="active">Hakkımda</a></li>
+        <li><a href="ozgecmis.html">Özgeçmiş</a></li>
+        <li><a href="sehir.html">Şehrim</a></li>
+        <li><a href="mirasimiz.html">Mirasımız</a></li>
+        <li><a href="takimimiz.html">Takımımız</a></li>
+        <li><a href="ilgi_alanlarim.html">İlgi Alanlarım</a></li>
+        <li><a href="iletisim.html">İletişim</a></li>
+        <li><a href="login.html">Giriş</a></li>
+      </ul>
     </div>
-  </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">👋 Merhaba, Ben</div>
+      <h1>Osman Güvenç</h1>
+      <p>Sakarya Üniversitesi – Bilgisayar Mühendisliği 2. Sınıf Öğrencisi</p>
+      <a href="ozgecmis.html" class="btn btn-white">📄 Özgeçmişime Bak</a>
+    </div>
+  </section>
+
+  <!-- HAKKIMDA -->
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="profile-card">
+          <div class="profile-avatar">🎓</div>
+          <div>
+            <h2 class="profile-name">Osman Güvenç</h2>
+            <p class="profile-sub">Bilgisayar Mühendisliği Öğrencisi • Hatay, Türkiye</p>
+            <br>
+            <p>Merhaba! Ben Osman. Hatay doğumluyum ve şu an Sakarya Üniversitesi Bilgisayar Mühendisliği bölümünde 2. sınıf öğrencisiyim. Kodlama tutkum, doğaya olan sevgim ve takım sporlarına ilgimle kendimi sürekli geliştirmeye çalışıyorum.</p>
+            <br>
+            <div>
+              <span class="tag">⚽ Futbol</span>
+              <span class="tag">🎣 Balıkçılık</span>
+              <span class="tag">✈️ Seyahat</span>
+              <span class="tag">📚 Okumak</span>
+              <span class="tag">♟️ Satranç</span>
+              <span class="tag">🏀 Basketbol</span>
+              <span class="tag">🏊 Yüzme</span>
+              <span class="tag">🧗 Tırmanma</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BİLGİLER GRID -->
+    <section class="section" style="background:var(--white); padding-top:0;">
+      <div class="container">
+        <div class="grid-3">
+          <div class="card" style="padding:28px;">
+            <div style="font-size:2.5rem; margin-bottom:12px;">🎯</div>
+            <h3 class="card-title">Hobiler</h3>
+            <p class="card-text">Futbol oynamak ve izlemek, balığa gitmek, gezmek, kitap okumak, satranç oynamak, basketbol oynamak.</p>
+          </div>
+          <div class="card" style="padding:28px;">
+            <div style="font-size:2.5rem; margin-bottom:12px;">🏅</div>
+            <h3 class="card-title">Sevdiğim Sporlar</h3>
+            <p class="card-text">Futbol, Yüzme, Yürüyüş, Tırmanma, Balıkçılık, Basketbol.</p>
+          </div>
+          <div class="card" style="padding:28px;">
+            <div style="font-size:2.5rem; margin-bottom:12px;">💻</div>
+            <h3 class="card-title">Teknik İlgiler</h3>
+            <p class="card-text">Web geliştirme, algoritma tasarımı, yazılım mühendisliği prensipleri.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VİDEO -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Hatay'a <span>Bir Bakış</span></h2>
+        <div class="section-divider"></div>
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/gDuTeGFF-yk" title="Hatay Tanıtım Videosu" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <p style="text-align:center; margin-top:16px; color:var(--gray-500); font-size:.9rem;">📍 Memleket videom – Hatay'ın güzelliklerini keşfedin</p>
+      </div>
+    </section>
+
+    <!-- FOTOĞRAF GALERİ -->
+    <section class="section" style="background:var(--white);">
+      <div class="container">
+        <h2 class="section-title">Galeri</h2>
+        <div class="section-divider"></div>
+        <div class="grid-2">
+          <div class="card">
+            <img class="card-img" src="images/habib_camii.jpg" alt="Habib-i Neccar Camii">
+            <div class="card-body">
+              <h3 class="card-title">Habib-i Neccar Camii</h3>
+              <p class="card-text">Türkiye'nin en eski camilerinden biri, Antakya'nın kalbinde.</p>
+            </div>
+          </div>
+          <div class="card">
+            <img class="card-img" src="images/harbiye.jpg" alt="Harbiye Şelalesi">
+            <div class="card-body">
+              <h3 class="card-title">Harbiye Şelaleleri</h3>
+              <p class="card-text">Antik Daphne'nin eşsiz doğal güzelliği, berrak suları ve yemyeşil ormanları.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 <strong>Osman Güvenç</strong> | Sakarya Üniversitesi – Web Teknolojileri Projesi | <a href="iletisim.html">İletişim</a></p>
+  </footer>
+
+  <script>
+    document.getElementById('navToggle').addEventListener('click', function() {
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+  </script>
 </body>
 </html>
